@@ -125,16 +125,17 @@ table {
 #root {
   min-height: 100vh;
   display: flex;
-  display: relative;
 }
 .imgContainer {
   display: flex;
   flex-direction: column;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 #bg-img {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   flex: 1;
   object-fit: cover;
 }
@@ -148,4 +149,24 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  color: aliceblue;
+}
+
+/* Initial state of the sidebar */
+#sidebar {
+  position: fixed;
+  right: -30%; /* Adjust this width based on your sidebar's width */
+  top: 0;
+  height: 100%;
+  width: 30%; /* Adjust this width based on your sidebar's width */
+  background-color: #f4f4f4;
+  transition: right 0.3s ease-in-out;
+  background-color: rgb(0 0 0 / 0.5);
+  color: #fff;
+  font-size: large;
+}
+
+/* When the sidebar is active */
+#sidebar.hide {
+  right: 0;
 }

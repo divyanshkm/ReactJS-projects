@@ -1,5 +1,6 @@
 import React from "react";
 import japanpic from "../assets/japan-background-digital-art.jpg";
+
 function Main() {
   return (
     <div className="imgContainer">
