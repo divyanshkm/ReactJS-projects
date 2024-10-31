@@ -1,14 +1,11 @@
 import Footer from "./components/Footer";
 import Main from "./components/Main";
 import SideBar from "./components/SideBar";
-
+import { useEffect } from "react";
 function App() {
-  const NASA_KEY = import.meta.env.VITE_NASA_API;
   useEffect(() => {
-    return () => {
-      second;
-    };
-  }, [third]);
+    const NASA_KEY = import.meta.env.VITE_NASA_API;
+  }, []);
 
   return (
     <>
