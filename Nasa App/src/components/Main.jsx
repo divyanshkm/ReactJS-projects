@@ -1,10 +1,11 @@
 import React from "react";
-import japanpic from "../assets/japan-background-digital-art.jpg";
 
-function Main() {
+import { useState } from "react";
+
+function Main(props) {
   return (
     <div className="imgContainer">
-      <img id="bg-img" src={japanpic}></img>
+      <img id="bg-img" src={props.bgImg}></img>
     </div>
   );
 }
