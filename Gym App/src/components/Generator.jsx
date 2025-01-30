@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import SectionWrapper from "./SectionWrapper";
 import { SCHEMES, WORKOUTS } from "../utils/swoldier";
@@ -20,29 +21,36 @@ function Header(props) {
 
 function Generator(props) {
   const [showModal, setShowModal] = useState(false);
-  const { poison, setPoison, muscle, setMuscle, goal, setGoal, updateWorkout } =
-    props;
+  const {
+    poison,
+    setPoison,
+    muscles,
+    setMuscles,
+    goal,
+    setGoal,
+    updateWorkout,
+  } = props;
 
   function toggleModal() {
     setShowModal(!showModal);
   }
 
-  function updateMuscles(muscleGroup) {
-    if (muscle.includes(muscleGroup)) {
-      setMuscle(muscle.filter((val) => val !== muscleGroup));
+  function updateMuscless(musclesGroup) {
+    if (muscles.includes(musclesGroup)) {
+      setMuscles(muscles.filter((val) => val !== musclesGroup));
       return;
     }
-    if (muscle.length > 3) {
+    if (muscles.length > 3) {
       return;
     }
     if (poison !== "individual") {
-      setMuscle([muscleGroup]);
+      setMuscles([musclesGroup]);
       setShowModal(false);
       return;
     }
 
-    setMuscle([...muscle, muscleGroup]);
-    if (muscle.length === 2) {
+    setMuscles([...muscles, musclesGroup]);
+    if (muscles.length === 2) {
       setShowModal(false);
     }
   }
@@ -65,7 +73,7 @@ function Generator(props) {
               }`}
               key={typeIndex}
               onClick={() => {
-                setMuscle([]);
+                setMuscles([]);
                 setPoison(type);
               }}
             >
@@ -77,7 +85,7 @@ function Generator(props) {
       <Header
         index={"02"}
         title={"Lock on Targets"}
-        description={"Select the muscle judged for annhilation"}
+        description={"Select the muscles judged for annhilation"}
       ></Header>
       <div className="bg-slate-950  border border-solid  border-blue-400 rounded-lg hover:border-blue-600 flex flex-col">
         <button
@@ -85,7 +93,7 @@ function Generator(props) {
           onClick={toggleModal}
         >
           <p className="capitalize">
-            {muscle.length === 3 ? "Select Muscle Group" : muscle.join(" ")}
+            {muscles.length === 3 ? "Select Muscles Group" : muscles.join(" ")}
           </p>
           <i className="fa-solid fa-caret-down absolute right-3 top-1/2 -translate-y-1/2"></i>
         </button>
@@ -94,16 +102,16 @@ function Generator(props) {
             {(poison === "individual"
               ? WORKOUTS[poison]
               : Object.keys(WORKOUTS[poison])
-            ).map((muscleGroup, muscleGroupIndex) => {
+            ).map((musclesGroup, musclesGroupIndex) => {
               return (
                 <button
-                  key={muscleGroupIndex}
+                  key={musclesGroupIndex}
                   className={`hover:text-blue-400 duration-200
-                    ${muscle.includes(muscleGroup) ? "text-blue-400" : ""}`}
-                  onClick={() => updateMuscles(muscleGroup)}
+                    ${muscles.includes(musclesGroup) ? "text-blue-400" : ""}`}
+                  onClick={() => updateMuscless(musclesGroup)}
                 >
                   <p className="uppercase">
-                    {muscleGroup.replaceAll("_", " ")}
+                    {musclesGroup.replaceAll("_", " ")}
                   </p>
                 </button>
               );
@@ -116,7 +124,7 @@ function Generator(props) {
         title={"Become Juggernaut"}
         description={"Select your Ultimate Objective"}
       ></Header>
-      <div className="grid grid-cols-3  gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3  gap-4">
         {Object.keys(SCHEMES).map((scheme, schemeIndex) => {
           return (
             <button

@@ -7,14 +7,14 @@ import { generateWorkout } from "./utils/functions";
 function App() {
   const [workout, setWorkout] = useState(null);
   const [poison, setPoison] = useState("individual");
-  const [muscle, setMuscle] = useState([]);
+  const [muscles, setMuscles] = useState([]);
   const [goal, setGoal] = useState("strength_power");
 
   function updateWorkout() {
-    if (muscle.length < 1) {
+    if (muscles.length < 1) {
       return;
     }
-    let newWourkout = generateWorkout(poison, muscle, goal);
+    let newWourkout = generateWorkout({ poison, muscles, goal });
     setWorkout(newWourkout);
   }
 
@@ -24,8 +24,8 @@ function App() {
       <Generator
         poison={poison}
         setPoison={setPoison}
-        muscle={muscle}
-        setMuscle={setMuscle}
+        muscles={muscles}
+        setMuscles={setMuscles}
         goal={goal}
         setGoal={setGoal}
         updateWorkout={updateWorkout}
